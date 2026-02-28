@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap');
+
+:root {
+  --color-bg: #051F20;
+  --color-section: #173831;
+  --color-accent: #8CB79B;
+  --color-hover: #235347;
+  --color-card-light: #DBF0DD;
+  --color-foreground: #E8F5EA;
+  --color-muted: #6B9E7A;
+  --color-border: rgba(140, 183, 155, 0.15);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-foreground);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(23, 56, 49, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+}
+
+.glass-card-light {
+  background: rgba(219, 240, 221, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(140, 183, 155, 0.2);
+}
+
+/* Search input glow */
+.search-glow:focus-within {
+  box-shadow: 0 0 0 2px rgba(140, 183, 155, 0.4), 0 20px 60px rgba(5, 31, 32, 0.6);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-hover); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatA {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50% { transform: translateY(-12px) rotate(0.5deg); }
+}
+
+@keyframes floatB {
+  0%, 100% { transform: translateY(0px) rotate(1deg); }
+  50% { transform: translateY(-8px) rotate(-0.5deg); }
+}
+
+@keyframes floatC {
+  0%, 100% { transform: translateY(-6px) rotate(0.5deg); }
+  50% { transform: translateY(6px) rotate(-1deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+.animate-fade-in-up { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-fade-in-up-delay-1 { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards; opacity: 0; }
+.animate-fade-in-up-delay-2 { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; opacity: 0; }
+.animate-fade-in-up-delay-3 { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards; opacity: 0; }
+.animate-float-a { animation: floatA 6s ease-in-out infinite; }
+.animate-float-b { animation: floatB 8s ease-in-out infinite; }
+.animate-float-c { animation: floatC 7s ease-in-out infinite; }
+
+.gradient-animated {
+  background: linear-gradient(135deg, #051F20, #173831, #235347, #173831, #051F20);
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Business card hover */
+.biz-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+.biz-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(5, 31, 32, 0.5);
+}
+
+/* Category card hover */
+.cat-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+.cat-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  background-color: var(--color-hover);
+}
+
+/* Tag */
+.tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(140, 183, 155, 0.15);
+  color: var(--color-accent);
+  border: 1px solid rgba(140, 183, 155, 0.25);
+}
+
+.tag-open {
+  background: rgba(140, 183, 155, 0.2);
+  color: #A8D5B5;
+  border-color: rgba(140, 183, 155, 0.3);
+}
+
+/* Star rating */
+.star { color: #F5C842; font-size: 0.75rem; }
+
+/* CTA gradient button */
+.btn-primary {
+  background: linear-gradient(135deg, #8CB79B, #6BA080);
+  color: #051F20;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(140, 183, 155, 0.35);
+  filter: brightness(1.08);
+}
+
+.btn-outline {
+  border: 1.5px solid rgba(140, 183, 155, 0.4);
+  color: var(--color-accent);
+  background: transparent;
+  font-weight: 600;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.btn-outline:hover {
+  background: rgba(140, 183, 155, 0.1);
+  border-color: var(--color-accent);
+}
+
+/* Fraunces font utility */
+.font-fraunces {
+  font-family: 'Fraunces', serif;
+}
