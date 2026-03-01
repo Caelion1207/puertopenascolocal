@@ -4,6 +4,7 @@ import AppImage from '@/components/ui/AppImage';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import GalleryModal from './GalleryModal';
+import { repartidores } from '@/data/repartidores';
 
 // Fase 1 — Entidad NEGOCIO con campos exactos (sin ratings, sin favoritos, sin métricas)
 interface Negocio {
@@ -18,6 +19,7 @@ interface Negocio {
   heroAlt: string;
   galeria: {src: string;alt: string;label: string;}[];
   tags: string[];
+  repartidores?: string[];
 }
 
 const negocios: Record<string, Negocio> = {
@@ -73,7 +75,7 @@ const negocios: Record<string, Negocio> = {
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1cd3fc95a-1772149206418.png', alt: 'Interior del Taller El Chavo con área de trabajo y elevador hidráulico', label: 'Interior' },
     { src: 'https://images.unsplash.com/photo-1605544294782-2529c35cfa20', alt: 'Fachada del Taller El Chavo en Calle 13 de Abril', label: 'Fachada' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_151a8b1e1-1772258685171.png', alt: 'Herramientas y equipo de diagnóstico computarizado en el taller', label: 'Equipo' },
-    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_1eb8136b8-1772264949956.png", alt: 'Mecánico realizando cambio de aceite y revisión de motor', label: 'Servicio' },
+    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_16b77eaad-1772347590513.png", alt: 'Mecánico realizando cambio de aceite y revisión de motor', label: 'Servicio' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_149164a3e-1767155041466.png', alt: 'Taller mecánico con herramientas y vehículo en reparación', label: 'Taller' }],
 
     tags: ['afinación', 'frenos', 'aceite', 'suspensión', 'diagnóstico', 'vehículos']
@@ -86,14 +88,14 @@ const negocios: Record<string, Negocio> = {
     direccion: 'Paseo Las Glorias 12, Puerto Peñasco, Sonora',
     horario: 'Jueves a Domingo: 6:00pm – 2:00am',
     telefono_contacto: '526381000008',
-    heroImage: "https://img.rocket.new/generatedImages/rocket_gen_img_16555ff76-1772264951684.png",
+    heroImage: "https://img.rocket.new/generatedImages/rocket_gen_img_1a8fe2c4d-1772347588630.png",
     heroAlt: 'Bar El Faro con ambiente nocturno, luces cálidas y vista al mar',
     galeria: [
     { src: 'https://images.unsplash.com/photo-1708396911395-1d140b452f6b', alt: 'Interior del Bar El Faro con barra iluminada y ambiente acogedor', label: 'Interior' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_10359e184-1772256608194.png', alt: 'Fachada del Bar El Faro en Paseo Las Glorias con vista al mar', label: 'Fachada' },
     { src: 'https://images.unsplash.com/photo-1489168962196-c9054cdf201e', alt: 'Cocteles artesanales preparados en Bar El Faro', label: 'Cocteles' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1a5151a2c-1772257128858.png', alt: 'Terraza del Bar El Faro con mesas y vista al atardecer', label: 'Terraza' },
-    { src: 'https://images.unsplash.com/photo-1583383058494-9bde2dac58b4', alt: 'Ambiente nocturno en Bar El Faro con iluminación cálida', label: 'Noche' }],
+    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_16555ff76-1772264951684.png", alt: 'Ambiente nocturno en Bar El Faro con iluminación cálida', label: 'Noche' }],
 
     tags: ['cocteles', 'cerveza', 'música en vivo', 'náutico', 'botanas', 'mar', 'fin de semana']
   },
@@ -105,14 +107,14 @@ const negocios: Record<string, Negocio> = {
     direccion: 'Av. Benito Juárez 55, Puerto Peñasco, Sonora',
     horario: 'Lunes a Sábado: 8:00am – 6:00pm',
     telefono_contacto: '526381000010',
-    heroImage: "https://img.rocket.new/generatedImages/rocket_gen_img_179d2f387-1772264955585.png",
+    heroImage: "https://img.rocket.new/generatedImages/rocket_gen_img_1a9f358d1-1772347592013.png",
     heroAlt: 'Técnico de Peñasco Pro Servicios realizando trabajo de instalación profesional',
     galeria: [
     { src: 'https://images.unsplash.com/photo-1499387190570-f176fa092e35', alt: 'Equipo de Peñasco Pro Servicios con uniformes y herramientas de trabajo', label: 'Equipo' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1069ba0fa-1772257127551.png', alt: 'Trabajo de plomería realizado por Peñasco Pro Servicios en hogar', label: 'Plomería' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1bd7ca23b-1769351129025.png', alt: 'Instalación eléctrica profesional por técnico certificado', label: 'Electricidad' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1539e5ac6-1770497276222.png', alt: 'Trabajo de pintura y acabados en interior de vivienda', label: 'Pintura' },
-    { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_17fb5db0e-1772062508388.png', alt: 'Técnico realizando mantenimiento general en hogar', label: 'Mantenimiento' }],
+    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_162fe42f6-1772347592780.png", alt: 'Técnico realizando mantenimiento general en hogar', label: 'Mantenimiento' }],
 
     tags: ['plomería', 'electricidad', 'pintura', 'mantenimiento', 'emergencias', 'hogar']
   },
@@ -188,7 +190,7 @@ const negocios: Record<string, Negocio> = {
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_17b834222-1772213824207.png', alt: 'Sección de vitaminas y suplementos en Farmacia Vida Sana', label: 'Vitaminas' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1cc77b8a6-1768683532632.png', alt: 'Mostrador de atención en Farmacia Vida Sana', label: 'Atención' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_11c85dc84-1772258684333.png', alt: 'Productos de higiene y cuidado personal en Farmacia Vida Sana', label: 'Higiene' },
-    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_1277e657b-1772264951687.png", alt: 'Fachada de Farmacia Vida Sana en Avenida Juárez', label: 'Fachada' }],
+    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_1d1d55ebf-1772347591390.png", alt: 'Fachada de Farmacia Vida Sana en Avenida Juárez', label: 'Fachada' }],
 
     tags: ['medicamentos', 'vitaminas', 'higiene', 'cuidado personal', 'genéricos']
   },
@@ -245,7 +247,7 @@ const negocios: Record<string, Negocio> = {
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1cc77b8a6-1768683532632.png', alt: 'Interior de Farmacia del Mar con pasillos de medicamentos organizados', label: 'Interior' },
     { src: 'https://images.unsplash.com/photo-1630286473534-e68142884b5b', alt: 'Mostrador de atención en Farmacia del Mar', label: 'Atención' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_144cee14e-1772257128692.png', alt: 'Productos de higiene y cuidado personal en Farmacia del Mar', label: 'Productos' },
-    { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_172c0ed76-1768813496494.png', alt: 'Farmacia del Mar con letrero visible en zona centro', label: 'Exterior' }],
+    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_1ddd4fbe2-1772347589867.png", alt: 'Farmacia del Mar con letrero visible en zona centro', label: 'Exterior' }],
 
     tags: ['medicamentos', 'genéricos', 'higiene', 'cuidado personal', 'zona centro']
   },
@@ -264,7 +266,7 @@ const negocios: Record<string, Negocio> = {
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_11e7fade5-1764678765445.png', alt: 'Diagnóstico computarizado de vehículo en Frenos y Más', label: 'Diagnóstico' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1a7816296-1772258686125.png', alt: 'Fachada del taller Frenos y Más en Av. Constitución', label: 'Fachada' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_17347ad8c-1764678764086.png', alt: 'Mecánico cambiando pastillas de freno en vehículo', label: 'Servicio' },
-    { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1f50c9105-1764783122966.png', alt: 'Herramientas y equipo profesional en taller Frenos y Más', label: 'Equipo' }],
+    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_1128af3de-1772347590483.png", alt: 'Herramientas y equipo profesional en taller Frenos y Más', label: 'Equipo' }],
 
     tags: ['frenos', 'suspensión', 'dirección', 'diagnóstico', 'refacciones', 'vehículos']
   },
@@ -338,7 +340,7 @@ const negocios: Record<string, Negocio> = {
     galeria: [
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_148ac4d6b-1772257125021.png', alt: 'Terraza del Sunset Lounge con vista al atardecer del Golfo', label: 'Terraza' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1735c9e05-1770127630552.png', alt: 'Barra de cocteles premium en Sunset Lounge', label: 'Barra' },
-    { src: 'https://images.unsplash.com/photo-1688005981109-005d981759ac', alt: 'Interior elegante del Sunset Lounge con iluminación ambiental', label: 'Interior' },
+    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_152198c61-1772347589945.png", alt: 'Interior elegante del Sunset Lounge con iluminación ambiental', label: 'Interior' },
     { src: 'https://images.unsplash.com/photo-1558789146-ab52ebce8be5', alt: 'Cocteles y tapas servidos en Sunset Lounge', label: 'Cocteles' },
     { src: 'https://images.unsplash.com/photo-1693493500992-0877f6263789', alt: 'Fachada del Sunset Lounge en Blvd. Las Glorias', label: 'Fachada' }],
 
@@ -393,7 +395,7 @@ const negocios: Record<string, Negocio> = {
     heroImage: 'https://img.rocket.new/generatedImages/rocket_gen_img_1e9ee59e2-1766907761956.png',
     heroAlt: 'Pintor profesional aplicando pintura en interior de casa con rodillo',
     galeria: [
-    { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_13c4cf598-1769294977628.png', alt: 'Pintor de Pintura Express PP aplicando pintura en pared interior', label: 'Pintura Interior' },
+    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_13c4cf598-1769294977628.png", alt: 'Pintor de Pintura Express PP aplicando pintura en pared interior', label: 'Pintura Interior' },
     { src: 'https://images.unsplash.com/photo-1519762590066-8ad3f61524e3', alt: 'Trabajo de pintura exterior en fachada de casa', label: 'Exterior' },
     { src: 'https://images.unsplash.com/photo-1612033250894-bd6ec4f4cd47', alt: 'Acabados y detalles de pintura en local comercial', label: 'Acabados' },
     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_14dbf4d86-1766856410644.png', alt: 'Equipo de Pintura Express PP con materiales de calidad', label: 'Equipo' },
@@ -466,14 +468,14 @@ const negocios: Record<string, Negocio> = {
     direccion: 'Calle Primero de Junio 22, Puerto Peñasco, Sonora',
     horario: 'Lunes a Sábado: 7:00am – 2:00pm',
     telefono_contacto: '526381000003',
-    heroImage: "https://img.rocket.new/generatedImages/rocket_gen_img_1649b1fe7-1772264953487.png",
+    heroImage: "https://img.rocket.new/generatedImages/rocket_gen_img_146ae9d0d-1772347588763.png",
     heroAlt: 'Tacos de carne asada con salsa y limón en taquería El Güero',
     galeria: [
-    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_100cd1bb7-1772264953847.png", alt: 'Tacos de carne asada recién preparados en Tacos El Güero', label: 'Tacos' },
+    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_15a67a845-1772347589143.png", alt: 'Tacos de carne asada recién preparados en Tacos El Güero', label: 'Tacos' },
     { src: 'https://images.unsplash.com/photo-1523398337691-c0e99fb073c6', alt: 'Taquero preparando tacos en comal en Tacos El Güero', label: 'Preparación' },
     { src: 'https://images.unsplash.com/photo-1637344453366-8bf6a2c1f150', alt: 'Ambiente de taquería tradicional en Tacos El Güero', label: 'Local' },
-    { src: 'https://images.unsplash.com/photo-1734773074866-507cc8d3b99c', alt: 'Tacos con salsa verde y roja en Tacos El Güero', label: 'Salsas' },
-    { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_14eb28fb9-1770356059784.png', alt: 'Orden de tacos con guarniciones en Tacos El Güero', label: 'Orden' }],
+    { src: "https://img.rocket.new/generatedImages/rocket_gen_img_1649b1fe7-1772264953487.png", alt: 'Tacos con salsa verde y roja en Tacos El Güero', label: 'Salsas' },
+    { src: "https://images.unsplash.com/photo-1632890651305-1b70bd2df5b4", alt: 'Orden de tacos con guarniciones en Tacos El Güero', label: 'Orden' }],
 
     tags: ['tacos', 'carne asada', 'taquería', 'desayuno', 'económico', 'rápido', 'fresco']
   },
@@ -520,6 +522,11 @@ export default async function BusinessPage({ params }: {params: Promise<{slug: s
   // Fase 3 — WhatsApp del negocio: usa telefono_contacto con wa.me/52XXXXXXXXXX
   const whatsappMsg = encodeURIComponent(`Hola, vi tu negocio en Radar Local y quiero información.`);
   const whatsappUrl = `https://wa.me/${biz.telefono_contacto}?text=${whatsappMsg}`;
+
+  const repartidoresDelNegocio =
+  repartidores.filter((r) =>
+  biz.repartidores?.includes(r.id)
+  );
 
   return (
     <div className="min-h-screen bg-[#051F20]">
@@ -614,7 +621,7 @@ export default async function BusinessPage({ params }: {params: Promise<{slug: s
                 className="mt-5 w-full flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl font-bold text-sm transition-all duration-200 hover:opacity-90"
                 style={{ background: '#25D366', color: '#fff' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.198.298.298.497.099.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.101.272.272.446.52.149.174 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.101.272.272.446.52.149.174 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
                 Enviar WhatsApp
               </a>
@@ -636,6 +643,26 @@ export default async function BusinessPage({ params }: {params: Promise<{slug: s
                 style={{ background: 'rgba(140,183,155,0.08)', border: '1px solid rgba(140,183,155,0.15)' }}>
                     {tag}
                   </span>
+              )}
+              </div>
+            </div>
+          }
+
+          {/* Repartidores disponibles */}
+          {repartidoresDelNegocio.length > 0 &&
+          <div className="mt-8">
+              <h2 className="text-xl font-bold mb-4 text-[#E8F5EA]">🚚 Repartidores disponibles</h2>
+              <div className="grid gap-3">
+                {repartidoresDelNegocio.map((r) =>
+              <a
+                key={r.id}
+                href={`https://wa.me/${r.telefono}?text=Hola%20quiero%20pedir%20a%20domicilio`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-600 text-white py-3 rounded-lg text-center font-medium hover:bg-green-700 transition">
+                
+                    Contactar a {r.nombre}
+                  </a>
               )}
               </div>
             </div>

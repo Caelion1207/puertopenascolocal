@@ -278,7 +278,8 @@ export default function FeaturedListings({ activeCategory = '', onClearSearch }:
 function BusinessCard({ negocio }: {negocio: Negocio;}) {
   const portada = negocio.galeria[0];
   return (
-    <div
+    <Link
+      href={`/negocio/${negocio.slug}`}
       className="biz-card rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer group h-full flex flex-col"
       style={{ background: '#173831', border: '1px solid rgba(140,183,155,0.1)' }}>
       <div className="relative h-[200px] overflow-hidden shrink-0">
@@ -301,12 +302,10 @@ function BusinessCard({ negocio }: {negocio: Negocio;}) {
             {negocio.direccion}
           </p>
         </div>
-        <Link
-          href={`/negocio/${negocio.slug}`}
-          className="btn-primary text-xs font-bold px-4 py-2.5 rounded-xl text-center block">
+        <span className="btn-primary text-xs font-bold px-4 py-2.5 rounded-xl text-center block">
           Ver negocio →
-        </Link>
+        </span>
       </div>
-    </div>);
+    </Link>);
 
 }

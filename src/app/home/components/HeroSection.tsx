@@ -159,15 +159,6 @@ export default function HeroSection() {
             
           </div>
         </div>
-
-        {/* Mobile: horizontal scroll preview */}
-        <div className="lg:hidden mt-10 flex gap-4 overflow-x-auto pb-2 -mx-5 px-5 hide-scrollbar">
-          {floatingCards.map((card) =>
-          <div key={card.id} className="shrink-0 w-[180px]">
-              <FloatingBizCard card={card} />
-            </div>
-          )}
-        </div>
       </div>
     </section>);
 

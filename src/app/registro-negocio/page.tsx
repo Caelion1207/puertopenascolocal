@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
@@ -33,35 +33,17 @@ export default function RegistroNegocioPage() {
     direccion: '',
     descripcion: '',
   });
-  const [imagenes, setImagenes] = useState<File[]>([]);
   const [submitted, setSubmitted] = useState(false);
-  const [imageError, setImageError] = useState('');
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    const combined = [...imagenes, ...files].slice(0, 20);
-    setImagenes(combined);
-    setImageError('');
-  };
-
-  const removeImage = (index: number) => {
-    setImagenes((prev) => prev.filter((_, i) => i !== index));
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (imagenes.length < 5) {
-      setImageError('Debes subir al menos 5 imágenes de tu negocio.');
-      return;
-    }
     // Fase 3 — WhatsApp del SITIO (no del negocio)
     const msg = encodeURIComponent(
-      `Hola, quiero registrar mi negocio en Radar Local.\n\nNegocio: ${form.nombre}\nCategoría: ${form.categoria}\nTeléfono: ${form.telefono_contacto}\nDirección: ${form.direccion}\nDescripción: ${form.descripcion}\n\nTengo ${imagenes.length} imágenes listas para enviar.`
+      `Hola, quiero registrar mi negocio en Radar Local.\n\nNegocio: ${form.nombre}\nCategoría: ${form.categoria}\nTeléfono: ${form.telefono_contacto}\nDirección: ${form.direccion}\nDescripción: ${form.descripcion}`
     );
     window.open(`https://wa.me/${SITE_WHATSAPP}?text=${msg}`, '_blank');
     setSubmitted(true);
@@ -172,75 +154,6 @@ export default function RegistroNegocioPage() {
                   className="w-full px-4 py-3 rounded-xl text-[#E8F5EA] placeholder-[#6B9E7A] text-sm outline-none resize-none"
                   style={{ background: 'rgba(5,31,32,0.5)', border: '1.5px solid rgba(140,183,155,0.15)' }}
                 />
-              </div>
-
-              {/* Galería — mínimo 5 imágenes */}
-              <div>
-                <label className="block text-[12px] font-semibold text-[#8CB79B] uppercase tracking-wider mb-2">
-                  Imágenes del negocio *
-                  <span className="ml-2 text-[#6B9E7A] normal-case font-normal">(mínimo 5)</span>
-                </label>
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="w-full px-4 py-4 rounded-xl text-sm transition-all flex flex-col items-center gap-2"
-                  style={{
-                    background: 'rgba(5,31,32,0.5)',
-                    border: `1.5px dashed ${imageError ? 'rgba(239,68,68,0.5)' : 'rgba(140,183,155,0.25)'}`,
-                    color: '#6B9E7A',
-                  }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21 15 16 10 5 21" />
-                  </svg>
-                  <span>Seleccionar imágenes</span>
-                  <span className="text-[11px] opacity-70">JPG, PNG, WEBP — Puedes seleccionar varias a la vez</span>
-                </button>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={handleImageChange}
-                  className="hidden"
-                />
-                {imageError && (
-                  <p className="text-[12px] text-red-400 mt-2 flex items-center gap-1.5">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
-                    {imageError}
-                  </p>
-                )}
-                {imagenes.length > 0 && (
-                  <div className="mt-3">
-                    <p className="text-[11px] text-[#8CB79B] mb-2">
-                      {imagenes.length} imagen{imagenes.length !== 1 ? 'es' : ''} seleccionada{imagenes.length !== 1 ? 's' : ''}
-                      {imagenes.length < 5 && <span className="text-[#6B9E7A]"> — faltan {5 - imagenes.length} más</span>}
-                    </p>
-                    <div className="grid grid-cols-4 gap-2">
-                      {imagenes.map((file, i) => (
-                        <div key={i} className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '75%' }}>
-                          <img
-                            src={URL.createObjectURL(file)}
-                            alt={`Imagen ${i + 1}`}
-                            className="absolute inset-0 w-full h-full object-cover"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => removeImage(i)}
-                            className="absolute top-1 right-1 w-5 h-5 rounded-full flex items-center justify-center"
-                            style={{ background: 'rgba(5,31,32,0.8)' }}
-                            aria-label="Eliminar imagen">
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E8F5EA" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                              <line x1="18" y1="6" x2="6" y2="18" />
-                              <line x1="6" y1="6" x2="18" y2="18" />
-                            </svg>
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
 
               <button
