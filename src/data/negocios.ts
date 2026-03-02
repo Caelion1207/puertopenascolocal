@@ -114,4 +114,23 @@ export const negocios: Negocio[] = [
     ],
     tags: ['limpieza', 'servicios', 'hogar', 'oficina', 'profesional', 'domicilio', 'mantenimiento'],
   },
+,
+{
+  id: 999,
+  slug: 'negocio-prueba',
+  nombre: 'Negocio Prueba',
+  categoria: 'Servicios',
+  descripcion: 'Este es un negocio de prueba para verificar que el sistema renderiza correctamente.',
+  direccion: 'Calle Falsa 123',
+  telefono_contacto: '526381111999',
+  galeria: [
+    {
+      src: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
+      alt: 'Imagen de prueba',
+      label: 'Portada'
+    }
+  ],
+  tags: ['prueba', 'test'],
+  repartidores: []
+} 
 ];
